@@ -1,0 +1,13 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plotly Chart Example</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    {{ df_html|safe }} <!-- Display the DataFrame as a table -->
+    <hr>
+    {{ fig_html|safe }} <!-- Display the Plotly chart -->
+</body>
+</html>

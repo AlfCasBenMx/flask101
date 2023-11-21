@@ -4,10 +4,31 @@
 <head>
     <title>Plotly Chart Example</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <button id="update-button">Update Chart</button>
     {{ df_html|safe }} <!-- Display the DataFrame as a table -->
     <hr>
-    {{ fig_html|safe }} <!-- Display the Plotly chart -->
+    <div id="chart-container">
+        {{ fig_html|safe }} <!-- Display the Plotly chart -->
+    </div>
+
+    <script>
+    $(document).ready(function(){
+        $("#update-button").click(function(){
+            $.ajax({
+                url: "/update_chart",
+                type: "get",
+                success: function(response) {
+                    $("#chart-container").html(response.fig_html);
+                },
+                error: function(xhr) {
+                    // Handle error
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>
